@@ -1,0 +1,57 @@
+{
+  "rules": {
+    "member-access": true,
+    "no-reference": true,
+    "typedef": [
+      true,
+      "call-signature",
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+    "curly": true,
+    "no-duplicate-variable": true,
+    "no-empty": true,
+    "no-eval": true,
+    "no-null-keyword": true,
+    "no-shadowed-variable": true,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "switch-default": true,
+    "triple-equals": true,
+    "use-isnan": true,
+    "prefer-const": true,
+    "trailing-comma": [true, { "multiline": "never", "singleline": "never" }],
+    "class-name": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-consecutive-blank-lines": true,
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": [true, "always"],
+    "space-before-function-paren": [true, "never"],
+    "whitespace": [
+      true,
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-type"
+    ]
+  }
+}

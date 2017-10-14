@@ -1,0 +1,39 @@
+{
+  "name": "cycle-hn",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "cycle-restart": "^0.2.2",
+    "cycle-scripts-one-fits-all": "4.2.2",
+    "cyclejs-test-helpers": "^1.3.0",
+    "html-looks-like": "^1.0.3",
+    "jsverify": "^0.8.2",
+    "snabbdom-to-html": "^3.2.0"
+  },
+  "dependencies": {
+    "@cycle/dom": "^18.0.0",
+    "@cycle/http": "^14.0.0",
+    "@cycle/isolate": "^3.0.0",
+    "@cycle/run": "^3.1.0",
+    "@cycle/time": "^0.8.0",
+    "cycle-onionify": "4.0.0",
+    "switch-path": "^1.2.0",
+    "xstream": "^10.9.0"
+  },
+  "scripts": {
+    "start": "cycle-scripts start",
+    "test": "cycle-scripts test",
+    "build": "cycle-scripts build",
+    "eject": "cycle-scripts eject",
+    "clean": "cycle-scripts clean"
+  },
+  "nyc": {
+    "include": [
+      "src"
+    ],
+    "reporter": [
+      "html",
+      "text-summary"
+    ]
+  }
+}

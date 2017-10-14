@@ -1,0 +1,83 @@
+body {
+    background-color: #fff;
+    color: #202020;
+    font-family : Roboto, "Helvetica Neue", "DejaVu Sans", "Fira Sans", "Droid Sans",  sans-serif;
+    font-size: 14px;
+    margin: 0;
+    overflow-y: scroll;
+}
+.main-wrapper {
+    background-color: #f3f6fb;
+    margin: 8px auto;
+    width: 85%;
+    .header-wrapper {
+        background-color: #24242d;
+        color: #c6fc93;
+        font-size: 13.3333px;
+        line-height: 16px;
+        overflow: hidden;
+        padding: 4px;
+        vertical-align: middle;
+        position: relative;
+        .logo {
+            border: 1px #c6fc93 solid;
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 18px;
+        }
+        a {
+            color: #c6fc93;
+            text-decoration: none;
+        }
+        .home {
+            font-weight: bold;
+            margin-right: .5em;
+        }
+    }
+    .main-content {
+        margin: 5px 0;
+        padding: 0 5px;
+        overflow: hidden;
+        position: relative;
+        word-wrap: break-word;
+        .feed-content {
+            border-bottom: 2px #24242d solid;
+            a {
+                color: #202020;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+                &:visited {
+                    color: #606060;
+                }
+            }
+            .feed-list {
+                margin: 10px 0;
+                padding-left: 35px;
+                padding-right: 15px;
+                .feed {
+                    color: #808080;
+                    font-size: 12px;
+                    margin: 10px 0;
+                    .feed-title {
+                        font-size: 16px;
+                    }
+                    .feed-domain {
+                        margin-left: 10px;
+                    }
+                    .feed-footer {
+                        .feed-author {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .pager {
+                margin-left: 35px;
+                padding: 20px 0;
+                font-weight: bold;
+            }
+        }
+    }
+}

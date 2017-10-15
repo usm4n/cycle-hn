@@ -74,8 +74,6 @@ export function App(sources: AppSources): AppSinks {
         return switchPath(pathname, Routes);
     }).debug('component==>').map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
 
-    // const feedsSinks: AppSinks = isolate(FeedsList, 'page')(sources);
-
     // const pageSinks = extractSinks(pageSinks$, drivers)
     const pageDom$ = pageSinks$.map(sinks => sinks.DOM).flatten();
     const pageRequests$ = pageSinks$.map(sinks => sinks.HTTP).flatten();

@@ -1,5 +1,6 @@
 import xs from 'xstream';
 import { setup, run } from '@cycle/run';
+import { makeHistoryDriver, captureClicks } from '@cycle/history';
 import { restartable, rerunner } from 'cycle-restart';
 import { makeDOMDriver } from '@cycle/dom';
 import { makeHTTPDriver } from '@cycle/http';
@@ -17,7 +18,8 @@ let drivers: any, driverFn: any;
 drivers = {
     DOM: makeDOMDriver('#app'),
     HTTP: makeHTTPDriver(),
-    Time: timeDriver
+    Time: timeDriver,
+    History: captureClicks(makeHistoryDriver())
 };
 /// #else
 driverFn = () => ({
@@ -25,7 +27,8 @@ driverFn = () => ({
         pauseSinksWhileReplaying: false
     }),
     HTTP: restartable(makeHTTPDriver()),
-    Time: timeDriver
+    Time: timeDriver,
+    History: captureClicks(makeHistoryDriver())
 });
 /// #endif
 export const driverNames: string[] = Object.keys(drivers || driverFn());

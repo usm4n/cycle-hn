@@ -10,7 +10,7 @@
     "noImplicitReturns": true,
     "strict": true,
     "allowJs": true,
-    "lib": ["ES6", "ES5", "DOM"]
+    "lib": ["es6", "es5", "dom"]
   },
   "exclude": ["node_modules"]
 }

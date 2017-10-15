@@ -1,3 +1,5 @@
+import { Location } from 'history';
+import switchPath from 'switch-path';
 import xs, { Stream } from 'xstream';
 import isolate from '@cycle/isolate';
 import FeedsList from './pages/FeedsList';
@@ -5,6 +7,7 @@ import { StateSource } from 'cycle-onionify';
 import { Sources, Sinks } from './interfaces';
 import { VNode, DOMSource } from '@cycle/dom';
 import { PageState } from './pages/types';
+import { Routes, MatchedRoute } from './routes';
 
 export const API_URL = 'https://node-hnapi.herokuapp.com';
 
@@ -56,23 +59,37 @@ function view(vdom$: Stream<VNode>): Stream<VNode> {
 }
 
 export function App(sources: AppSources): AppSinks {
+    const history$: Stream<Location> = sources.History;
+
     sources.onion.state$.addListener({
         next: value => console.log(value)
     });
 
     const initState$ = initState();
-    const feedsSinks: AppSinks = isolate(FeedsList, 'page')(sources);
 
-    const reducers$ = xs.merge(feedsSinks.onion, initState$);
+    const pageSinks$ = history$.map((location: Location): MatchedRoute => {
+        const {pathname} = location;
+
+        return switchPath(pathname, Routes);
+    }).debug('component==>').map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
+
+    // const feedsSinks: AppSinks = isolate(FeedsList, 'page')(sources);
+
+    // const pageSinks = extractSinks(pageSinks$, drivers)
+    const pageDom$ = pageSinks$.map(sinks => sinks.DOM).flatten();
+    const pageRequests$ = pageSinks$.map(sinks => sinks.HTTP).flatten();
+    const pageReducers$ = pageSinks$.map(sinks => sinks.onion).flatten();
+
+    const reducers$ = xs.merge<Reducer>(pageReducers$, initState$);
 
     reducers$.addListener({
         next: (value: Reducer) => console.log(value)
     });
-    const vdom$ = view(feedsSinks.DOM as Stream<VNode>);
+    const vdom$ = view(pageDom$ as Stream<VNode>);
 
     return {
         DOM: vdom$,
-        HTTP: feedsSinks.HTTP,
+        HTTP: pageRequests$,
         onion: reducers$
     };
 }

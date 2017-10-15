@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@cycle/dom": "^18.0.0",
+    "@cycle/history": "^6.4.0",
     "@cycle/http": "^14.0.0",
     "@cycle/isolate": "^3.0.0",
     "@cycle/run": "^3.1.0",
     "@cycle/time": "^0.8.0",
+    "@types/history": "^4.6.0",
     "cycle-onionify": "4.0.0",
     "switch-path": "^1.2.0",
     "xstream": "^10.9.0"

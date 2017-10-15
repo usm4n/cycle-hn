@@ -31,14 +31,14 @@ function initState(): Stream<Reducer> {
     return initReducer$;
 }
 
-function navigation(currentPath: string): VNode {
+function navigation(): VNode {
     return (
         <span>
-            <a href="#"> new </a>|
-            <a href="#"> comments </a>|
-            <a href="#"> show </a>|
-            <a href="#"> ask </a>|
-            <a href="#"> jobs </a>
+            <a href="/news/1"> top </a>|
+            <a href="/newest/1"> new </a>|
+            <a href="/show/1"> show </a>|
+            <a href="/ask/1"> ask </a>|
+            <a href="/jobs/1"> jobs </a>
         </span>
     );
 }

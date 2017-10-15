@@ -1,7 +1,8 @@
 import { view } from './view';
 import { intent } from './intent';
-import isolate from '@cycle/isolate';
 import { VNode } from '@cycle/dom';
+import { API_URL } from '../../app';
+import isolate from '@cycle/isolate';
 import xs, { Stream } from 'xstream';
 import {
     FeedsListState,
@@ -13,8 +14,6 @@ import {
 import { HTTPSource, RequestOptions } from '@cycle/http';
 import { State as FeedState } from '../../components/FeedAtom';
 import { FeedsCollection } from '../../components/FeedCollection';
-
-import { API_URL } from '../../app';
 
 function requestMapper({page, type}: {page: string, type: string}): RequestOptions {
     return {

@@ -1,15 +1,15 @@
 import xs from 'xstream';
-import { setup, run } from '@cycle/run';
-import { makeHistoryDriver, captureClicks } from '@cycle/history';
-import { restartable, rerunner } from 'cycle-restart';
-import { makeDOMDriver } from '@cycle/dom';
-import { makeHTTPDriver } from '@cycle/http';
-import { timeDriver } from '@cycle/time';
 import isolate from '@cycle/isolate';
 import onionify from 'cycle-onionify';
+import { setup, run } from '@cycle/run';
+import { timeDriver } from '@cycle/time';
+import { makeDOMDriver } from '@cycle/dom';
+import { makeHTTPDriver } from '@cycle/http';
+import { restartable, rerunner } from 'cycle-restart';
+import { makeHistoryDriver, captureClicks } from '@cycle/history';
 
-import { Component, Sources, RootSinks } from './interfaces';
 import { App } from './app';
+import { Component, Sources, RootSinks } from './interfaces';
 
 const main: Component = onionify(App);
 

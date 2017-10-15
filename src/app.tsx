@@ -2,11 +2,11 @@ import { Location } from 'history';
 import switchPath from 'switch-path';
 import xs, { Stream } from 'xstream';
 import isolate from '@cycle/isolate';
+import { PageState } from './pages/types';
 import FeedsList from './pages/FeedsList';
 import { StateSource } from 'cycle-onionify';
 import { Sources, Sinks } from './interfaces';
 import { VNode, DOMSource } from '@cycle/dom';
-import { PageState } from './pages/types';
 import { Routes, MatchedRoute } from './routes';
 
 export const API_URL = 'https://node-hnapi.herokuapp.com';

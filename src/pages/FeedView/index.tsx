@@ -1,10 +1,9 @@
+import { API_URL } from '../../app';
 import xs, { Stream } from 'xstream';
 import isolate from '@cycle/isolate';
+import { Sources, Sinks } from '../../interfaces';
 import { StateSource, makeCollection } from 'cycle-onionify';
 import { State as FeedState } from '../../components/FeedAtom';
-import { Sources, Sinks } from '../../interfaces';
-
-import { API_URL } from '../../app';
 
 export interface State {
 }

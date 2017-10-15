@@ -19,6 +19,7 @@
     "@cycle/time": "^0.8.0",
     "@types/history": "^4.6.0",
     "cycle-onionify": "4.0.0",
+    "cyclejs-utils": "^1.0.4",
     "switch-path": "^1.2.0",
     "xstream": "^10.9.0"
   },

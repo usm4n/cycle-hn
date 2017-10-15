@@ -5,6 +5,7 @@ import isolate from '@cycle/isolate';
 import { PageState } from './pages/types';
 import FeedsList from './pages/FeedsList';
 import { StateSource } from 'cycle-onionify';
+import { extractSinks } from 'cyclejs-utils';
 import { Sources, Sinks } from './interfaces';
 import { VNode, DOMSource } from '@cycle/dom';
 import { Routes, MatchedRoute } from './routes';
@@ -22,14 +23,6 @@ const defaultAppState: AppState = {
 export type Reducer = (prev?: AppState) => AppState | undefined;
 export type AppSinks = Sinks & { onion: Stream<Reducer> };
 export type AppSources = Sources & { onion: StateSource<AppState>};
-
-function initState(): Stream<Reducer> {
-    const initReducer$ = xs.of<Reducer>(
-        prevState => (prevState === undefined ? defaultAppState : prevState)
-    );
-
-    return initReducer$;
-}
 
 function navigation(): VNode {
     return (
@@ -58,6 +51,14 @@ function view(vdom$: Stream<VNode>): Stream<VNode> {
     );
 }
 
+function initState(): Stream<Reducer> {
+    const initReducer$ = xs.of<Reducer>(
+        prevState => (prevState === undefined ? defaultAppState : prevState)
+    );
+
+    return initReducer$;
+}
+
 export function App(sources: AppSources): AppSinks {
     const history$: Stream<Location> = sources.History;
 
@@ -69,26 +70,22 @@ export function App(sources: AppSources): AppSinks {
 
     const pageSinks$ = history$.map((location: Location): MatchedRoute => {
         const {pathname} = location;
-        console.log(location);
 
         return switchPath(pathname, Routes);
-    }).debug('component==>').map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
+    }).map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
 
-    // const pageSinks = extractSinks(pageSinks$, drivers)
-    const pageDom$ = pageSinks$.map(sinks => sinks.DOM).flatten();
-    const pageRequests$ = pageSinks$.map(sinks => sinks.HTTP).flatten();
-    const pageReducers$ = pageSinks$.map(sinks => sinks.onion).flatten();
+    const pageSinks = extractSinks(pageSinks$, ['DOM', 'HTTP', 'onion']);
 
-    const reducers$ = xs.merge<Reducer>(pageReducers$, initState$);
+    const reducers$ = xs.merge<Reducer>(pageSinks.onion, initState$);
 
     reducers$.addListener({
         next: (value: Reducer) => console.log(value)
     });
-    const vdom$ = view(pageDom$ as Stream<VNode>);
+    const vdom$ = view(pageSinks.DOM as Stream<VNode>);
 
     return {
         DOM: vdom$,
-        HTTP: pageRequests$,
-        onion: reducers$
+        onion: reducers$,
+        HTTP: pageSinks.HTTP
     };
 }

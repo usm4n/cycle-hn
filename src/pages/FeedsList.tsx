@@ -1,5 +1,4 @@
 import isolate from '@cycle/isolate';
-import { HTTPSource } from '@cycle/http';
 import { VNode } from '@cycle/dom';
 import xs, { Stream } from 'xstream';
 import {
@@ -9,6 +8,7 @@ import {
     FeedsListReducer as Reducer,
     PageParams
 } from './types';
+import { HTTPSource, RequestOptions } from '@cycle/http';
 import { State as FeedState } from '../components/FeedAtom';
 
 import { API_URL } from '../app';
@@ -20,7 +20,7 @@ const defaultState: FeedsListState = {
     },
     meta: {
         max: 0,
-        number: 0,
+        page: '0',
         type: 'news'
     },
     feeds: [] as Array<FeedState>
@@ -50,7 +50,7 @@ function intent(sources: Sources): Stream<Reducer> {
 function pager(pageData: PageParams): VNode {
     return (
         <div className="pager">
-            {pageData.number < pageData.max && <a href={`/${pageData.type}/${pageData.number + 1}`}>More</a>}
+            {+pageData.page < pageData.max && <a href={`/${pageData.type}/${+pageData.page + 1}`}>More</a>}
         </div>
     );
 }
@@ -65,14 +65,20 @@ function view(state$: Stream<FeedsListState>, feedsDom$: Stream<VNode>): Stream<
     );
 }
 
+function requestMapper({page, type}: {page: string, type: string}): RequestOptions {
+    return {
+        method: 'GET',
+        category: 'feeds',
+        query: {page},
+        url: API_URL + `/${type}`
+    };
+}
+
 export default function FeedsList(sources: Sources): Sinks {
     const state$ = sources.onion.state$;
 
-    const request$ = xs.of({
-        url: API_URL + '/news',
-        category: 'feeds',
-        method: 'GET'
-    });
+    const request$ = sources.params$.map(requestMapper)
+        .debug('Request==');
 
     const reducers$: Stream<Reducer> = intent(sources);
     const feedsCollection = isolate(FeedsCollection, 'feeds')(sources);

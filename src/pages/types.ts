@@ -6,7 +6,7 @@ import { State as FeedState } from '../components/FeedAtom';
 export interface PageParams {
     max: number;
     type: string;
-    number: number;
+    page: string;
 }
 
 export interface PulseLoader {

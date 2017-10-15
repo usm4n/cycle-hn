@@ -13,25 +13,25 @@ export interface MatchedRoute {
 }
 
 export const Routes: RouteDefinition = {
-    '/': createListPage({max: 10, type: 'news', number: 1}),
+    '/': createListPage({max: 10, type: 'news', page: '1'}),
     '/news': {
-        '/': createListPage({max: 10, type: 'news', number: 1}),
-        '/:number': (number: number) => createListPage({max: 10, type: 'news', number})
+        '/': createListPage({max: 10, type: 'news', page: '1'}),
+        '/:page': (page: string) => createListPage({max: 10, type: 'news', page})
     },
     '/top': {
-        '/': createListPage({max: 12, type: 'newest', number: 1}),
-        '/:number': (number: number) => createListPage({max: 12, type: 'newest', number})
+        '/': createListPage({max: 12, type: 'newest', page: '1'}),
+        '/:page': (page: string) => createListPage({max: 12, type: 'newest', page})
     },
     '/show': {
-        '/': createListPage({max: 2, type: 'show', number: 1}),
-        '/:number': (number: number) => createListPage({max: 2, type: 'show', number})
+        '/': createListPage({max: 2, type: 'show', page: '1'}),
+        '/:page': (page: string) => createListPage({max: 2, type: 'show', page})
     },
     '/ask': {
-        '/': createListPage({max: 3, type: 'ask', number: 1}),
-        '/:number': (number: number) => createListPage({max: 3, type: 'ask', number})
+        '/': createListPage({max: 3, type: 'ask', page: '1'}),
+        '/:page': (page: string) => createListPage({max: 3, type: 'ask', page})
     },
     '/jobs': {
-        '/': createListPage({max: 1, type: 'show', number: 1}),
-        '/:number': (number: number) => createListPage({max: 1, type: 'jobs', number})
+        '/': createListPage({max: 1, type: 'show', page: '1'}),
+        '/:page': (page: string) => createListPage({max: 1, type: 'jobs', page})
     }
 };

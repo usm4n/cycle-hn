@@ -69,6 +69,7 @@ export function App(sources: AppSources): AppSinks {
 
     const pageSinks$ = history$.map((location: Location): MatchedRoute => {
         const {pathname} = location;
+        console.log(location);
 
         return switchPath(pathname, Routes);
     }).debug('component==>').map((route: MatchedRoute) => isolate(route.value, 'page')(sources));

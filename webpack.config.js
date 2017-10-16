@@ -8,7 +8,8 @@ module.exports = {
         main: [appPath('src', 'index.ts'), appPath('src', 'css', 'styles.scss')]
     },
     output: {
-        filename: 'bundle.[hash].js',
+        filename: 'bundle.[hash:8].js',
+        publicPath: '/',
         path: appPath('build')
     }
 };

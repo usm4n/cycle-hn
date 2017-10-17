@@ -93,10 +93,11 @@ module.exports = createConfig([
             new CopyWebpackPlugin([{ from: 'public', to: '' }]),
             new UglifyJsPlugin(),
             new SWPreCachePlugin({
+                minify: true,
                 cacheId: 'cycle-hn',
                 filename: 'service-worker.js',
+                navigateFallback: 'index.html',
                 dontCacheBustUrlsMatching:/\.\w{8}\./,
-                minify: true,
                 staticFileGlobsIgnorePatterns: [/\.map$/, /\.json$/],
             })
         ])

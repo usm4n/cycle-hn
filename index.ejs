@@ -6,12 +6,10 @@
 </head>
 <body>
     <div id="app"/>
-    <script>
-        (function () {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js');
-            }
-        })();
-     </script>
+    <noscript>
+      <h4 style="font-family: 'DejaVu Sans Mono', 'Helvetica Neue', Helvetica;">
+        Sorry, this application requires javascript to function properly.
+      </h4>
+    </noscript>
 </body>
 </html>

@@ -35,6 +35,12 @@ export const driverNames: string[] = Object.keys(drivers || driverFn());
 
 /// #if PRODUCTION
 run(main as any, drivers);
+// register service worker
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(registration => console.log('SW registration successful with scope: ', registration.scope));
+}
 /// #else
 const rerun = rerunner(setup, driverFn, isolate);
 rerun(main as any);

@@ -24,28 +24,31 @@ export type Reducer = (prev?: AppState) => AppState | undefined;
 export type AppSinks = Sinks & { onion: Stream<Reducer> };
 export type AppSources = Sources & { onion: StateSource<AppState>};
 
-function navigation(): VNode {
+function navigation(pathname: string): VNode {
     return (
         <span>
-            <a href="/news/1"> top </a>|
-            <a href="/newest/1"> new </a>|
-            <a href="/show/1"> show </a>|
-            <a href="/ask/1"> ask </a>|
-            <a href="/jobs/1"> jobs </a>
+            <a href="/news/1" className={pathname.startsWith('/news') ? 'active' : ''}> top </a>|
+            <a href="/newest/1" className={pathname.startsWith('/newest') ? 'active' : ''}> new </a>|
+            <a href="/show/1" className={pathname.startsWith('/show') ? 'active' : ''}> show </a>|
+            <a href="/ask/1" className={pathname.startsWith('/ask') ? 'active' : ''}> ask </a>|
+            <a href="/jobs/1" className={pathname.startsWith('/jobs') ? 'active' : ''}> jobs </a>
         </span>
     );
 }
 
-function view(vdom$: Stream<VNode>): Stream<VNode> {
-    return vdom$.map(vdom =>
+function view(history$: Stream<Location>, vdom$: Stream<VNode>): Stream<VNode> {
+    return xs.combine(history$, vdom$).map(([{pathname}, vdom]: [{pathname: string}, VNode]) =>
         <div className="main-wrapper">
             <div className="header-wrapper">
                 <img className="logo" src="./public/cycle.png" alt="logo"/>
                 <a className="home">Cycle HN</a>
-                {navigation()}
+                {navigation(pathname)}
             </div>
             <div className="main-content">
                 {vdom}
+            </div>
+            <div className="footer">
+                <p>Fork project at <a className="github" href="https://github.com/usm4n/cycle-hn">usm4n/cycle-hn</a></p>
             </div>
         </div>
     );
@@ -70,9 +73,13 @@ export function App(sources: AppSources): AppSinks {
 
     const pageSinks$ = history$.map((location: Location): MatchedRoute => {
         const {pathname} = location;
+        console.log(location);
 
         return switchPath(pathname, Routes);
-    }).map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
+    }).map((route: MatchedRoute) => {
+        console.log(route);
+        return isolate(route.value, 'page')(sources);
+    });
 
     const pageSinks = extractSinks(pageSinks$, ['DOM', 'HTTP', 'onion']);
 
@@ -81,7 +88,7 @@ export function App(sources: AppSources): AppSinks {
     reducers$.addListener({
         next: (value: Reducer) => console.log(value)
     });
-    const vdom$ = view(pageSinks.DOM as Stream<VNode>);
+    const vdom$ = view(history$, pageSinks.DOM as Stream<VNode>);
 
     return {
         DOM: vdom$,

@@ -28,10 +28,22 @@ body {
         a {
             color: #c6fc93;
             text-decoration: none;
+            &.active {
+                color: #f3f6fb;
+            }
         }
         .home {
             font-weight: bold;
             margin-right: .5em;
+        }
+    }
+    .footer {
+        color: #808080;
+        height: 25px;
+        text-align: center;
+        .github {
+            color: #606060;
+            font-weight: bold;
         }
     }
     .main-content {

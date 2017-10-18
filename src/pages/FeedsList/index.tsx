@@ -5,10 +5,9 @@ import { API_URL } from '../../app';
 import isolate from '@cycle/isolate';
 import xs, { Stream } from 'xstream';
 import {
-    FeedsListState,
-    FeedsListSinks as Sinks,
-    FeedsListSources as Sources,
-    FeedsListReducer as Reducer,
+    PageSinks as Sinks,
+    PageSources as Sources,
+    PageReducer as Reducer,
     PageParams
 } from '../types';
 import { HTTPSource, RequestOptions } from '@cycle/http';

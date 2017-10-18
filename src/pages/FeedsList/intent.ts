@@ -2,8 +2,8 @@ import isolate from '@cycle/isolate';
 import xs, { Stream } from 'xstream';
 import {
     FeedsListState,
-    FeedsListSources as Sources,
-    FeedsListReducer as Reducer
+    PageSources as Sources,
+    PageReducer as Reducer
 } from '../types';
 import { State as FeedState } from '../../components/FeedAtom';
 

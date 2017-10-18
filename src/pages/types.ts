@@ -3,11 +3,12 @@ import { Stream } from 'xstream';
 import { StateSource } from 'cycle-onionify';
 import { Sources, Sinks } from '../interfaces';
 import { State as FeedState } from '../components/FeedAtom';
+import { State as CommentState } from '../components/CommentAtom';
 
 export interface PageParams {
-    max: number;
-    type: string;
-    page: string;
+    id?: string;
+    page?: string;
+    [param: string]: any;
 }
 
 export interface PulseLoader {
@@ -21,7 +22,8 @@ interface PageBase {
 
 export interface FeedViewState extends PageBase {
     atom: FeedState & {
-
+        content: string;
+        comments: Array<CommentState>;
     };
 }
 

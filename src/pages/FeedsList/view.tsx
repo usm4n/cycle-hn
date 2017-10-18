@@ -7,7 +7,7 @@ import {
 
 function pager(pageData: PageParams): VNode {
     return (
-        <div className="pager">
+        <div className="feed-pager">
             {+pageData.page < pageData.max && <a href={`/${pageData.type}/${+pageData.page + 1}`}>More</a>}
         </div>
     );

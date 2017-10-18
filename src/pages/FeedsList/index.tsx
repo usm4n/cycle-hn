@@ -20,7 +20,7 @@ function requestMapper({page, type}: {page: string, type: string}): RequestOptio
         method: 'GET',
         category: 'feeds',
         query: {page},
-        url: API_URL + `/${type}`
+        url: API_URL + `/${type}.json`
     };
 }
 

@@ -12,14 +12,14 @@ body {
     width: 85%;
 }
 .header-wrapper {
-    background-color: #24242d;
     color: #c6fc93;
+    background-color: #24242d;
     font-size: 13.3333px;
     line-height: 16px;
     overflow: hidden;
     padding: 4px;
-    vertical-align: middle;
     position: relative;
+    vertical-align: middle;
     .logo {
         border: 1px #c6fc93 solid;
         margin-right: 5px;
@@ -49,12 +49,12 @@ body {
     }
 }
 .main-content {
+    border-bottom: 2px #24242d solid;
     margin: 5px 0;
-    padding: 0 5px;
     overflow: hidden;
+    padding: 0 5px;
     position: relative;
     word-wrap: break-word;
-    border-bottom: 2px #24242d solid;
     a {
         color: #202020;
         text-decoration: none;

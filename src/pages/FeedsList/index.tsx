@@ -7,8 +7,7 @@ import xs, { Stream } from 'xstream';
 import {
     PageSinks as Sinks,
     PageSources as Sources,
-    PageReducer as Reducer,
-    PageParams
+    PageReducer as Reducer
 } from '../types';
 import { HTTPSource, RequestOptions } from '@cycle/http';
 import { State as FeedState } from '../../components/FeedAtom';

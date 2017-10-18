@@ -1,29 +1,40 @@
+import { VNode } from '@cycle/dom';
 import { API_URL } from '../../app';
-import xs, { Stream } from 'xstream';
 import isolate from '@cycle/isolate';
-import { Sources, Sinks } from '../../interfaces';
-import { StateSource, makeCollection } from 'cycle-onionify';
-import { State as FeedState } from '../../components/FeedAtom';
+import xs, { Stream } from 'xstream';
+import {
+    PageSinks as Sinks,
+    PageSources as Sources,
+    PageReducer as Reducer
+} from '../types';
+import { FeedAtom } from '../../components/FeedAtom';
+import { HTTPSource, RequestOptions } from '@cycle/http';
+import { CommentCollection } from '../../components/CommentCollection';
 
-export interface State {
+function requestMapper({id, type}: {id: string, type: string}): RequestOptions {
+    return {
+        method: 'GET',
+        category: 'atom',
+        url: API_URL + `/${type}/${id}.json`
+    };
 }
 
-export default function FeedsView(sources: Sources): Sinks {
-    const request$ = xs.of({
-        url: API_URL + '/news',
-        category: 'feeds',
-        method: 'GET'
-    });
+export default function FeedsList(sources: Sources): Sinks {
+    const state$ = sources.onion.state$;
 
-    const response$ = sources.HTTP.select('feeds')
-        .flatten()
-        .map(res => res.body).debug('body');
+    const request$ = sources.params$.map(requestMapper)
+        .debug('Request==');
 
-    const vdom$ = response$.map(feeds => <p>Response received</p>);
+    const reducers$: Stream<Reducer> = intent(sources);
+    const feedsCollection = isolate(CommentCollection, 'feeds')(sources);
+
+    const feedsDom$ = feedsCollection.DOM;
+    const pageDom$: Stream<VNode> = view(state$, feedsDom$);
 
     const sinks = {
-        DOM: vdom$,
-        HTTP: request$
+        DOM: pageDom$,
+        HTTP: request$,
+        onion: reducers$
     };
 
     return sinks;

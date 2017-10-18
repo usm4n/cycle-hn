@@ -10,7 +10,7 @@ import { Sources, Sinks } from './interfaces';
 import { VNode, DOMSource } from '@cycle/dom';
 import { Routes, MatchedRoute } from './routes';
 
-export const API_URL = 'https://node-hnapi.herokuapp.com';
+export const API_URL = 'https://hnpwa.com/api/v0';
 
 export type AppState = {
     page: PageState;

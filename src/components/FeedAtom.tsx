@@ -26,10 +26,10 @@ export type FeedSources = Sources & { onion: StateSource<State> };
 
 function view(state$: Stream<State>): Stream<VNode> {
     return state$.map(feed =>
-        <li className="feed">
+        <li className="feed-atom">
             <a className="feed-title" href={feed.url}>{feed.title}</a>
             <span className="feed-domain">({feed.domain})</span>
-            <div className="feed-footer">
+            <div className=".feed-footer">
                 <span> {feed.points} points </span> by
                 <span className="feed-author"> {feed.user}</span>
                 <span> {feed.time_ago} | {feed.comments_count} comments </span>

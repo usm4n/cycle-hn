@@ -28,7 +28,7 @@ function extractFeed(data: any): FeedState {
     }, {} as FeedState);
 }
 
-export function intent(sources: Sources): Stream<Reducer> {
+export function makeReducer$(sources: Sources): Stream<Reducer> {
     const http$ = sources.HTTP.select('atom').flatten() ;
 
     const initReducer$ = xs.of<Reducer>(

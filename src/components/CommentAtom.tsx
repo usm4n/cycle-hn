@@ -21,22 +21,30 @@ export type Reducer = (prev: State) => State;
 export type CommentSinks = Sinks & { onion: Stream<Reducer> };
 export type CommentSources = Sources & { onion: StateSource<State> };
 
-function view(state$: Stream<State>): Stream<VNode> {
-    return state$.map(comment =>
+function intent(sources: Sources): Stream<boolean> {
+    return sources.DOM.select('.comment-hide')
+        .events('click')
+        .mapTo(undefined)
+        .fold((show: boolean) => !show, true);
+}
+
+function view(state$: Stream<State>, action$: Stream<any>): Stream<VNode> {
+    return xs.combine(state$, action$)
+        .map(([comment, showComment]) =>
         <li className="comment">
-            <div className="comment-header">
+            <div className={'comment-header ' + `${!showComment ? 'active' : ''}`}>
                 <span className="comment-author"> {comment.user} </span>
                 <span> {comment.time_ago} </span>
-                <span className="comment-hide">[-]</span>
+                <span className="comment-hide">[{showComment ? '-' : '+'}]</span>
             </div>
-            <div className="comment-content" innerHTML={comment.content}>
-            </div>
+            {showComment && <div className="comment-content" innerHTML={comment.content}/>}
         </li>
     );
 }
 
 export const CommentAtom: Component = function(sources: CommentSources): CommentSinks {
-    const vdom$ = view(sources.onion.state$);
+    const action$ = intent(sources);
+    const vdom$ = view(sources.onion.state$, action$);
 
     const sinks = {
         DOM: vdom$,

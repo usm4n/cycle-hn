@@ -1,5 +1,4 @@
 import { view } from './view';
-import { intent } from './intent';
 import { VNode } from '@cycle/dom';
 import { API_URL } from '../../app';
 import isolate from '@cycle/isolate';
@@ -9,6 +8,7 @@ import {
     PageSources as Sources,
     PageReducer as Reducer
 } from '../types';
+import { makeReducer$ } from './reducer';
 import { FeedAtom } from '../../components/FeedAtom';
 import { HTTPSource, RequestOptions } from '@cycle/http';
 import { CommentCollection } from '../../components/CommentCollection';
@@ -27,7 +27,7 @@ export default function FeedsView(sources: Sources): Sinks {
     const request$ = sources.params$.map(requestMapper)
         .debug('Request==');
 
-    const reducers$: Stream<Reducer> = intent(sources);
+    const reducers$: Stream<Reducer> = makeReducer$(sources);
     const feedAtom = isolate(FeedAtom, 'feed')(sources);
     const commentCollection = isolate(CommentCollection, 'comments')(sources);
 

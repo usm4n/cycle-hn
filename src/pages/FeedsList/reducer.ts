@@ -19,7 +19,7 @@ const defaultState: PageState = {
     feeds: [] as Array<FeedState>
 };
 
-export function intent(sources: Sources): Stream<Reducer> {
+export function makeReducer$(sources: Sources): Stream<Reducer> {
     const params$ = sources.params$;
     const http$ = sources.HTTP.select('feeds').flatten() ;
 

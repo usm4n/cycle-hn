@@ -1,9 +1,10 @@
-import { VNode } from '@cycle/dom';
-import xs, { Stream } from 'xstream';
 import {
     PageState,
     PageParams
 } from '../types';
+import { VNode } from '@cycle/dom';
+import xs, { Stream } from 'xstream';
+import { pulse } from '../partials/_pulse';
 
 function pager(pageData: PageParams): VNode {
     return (
@@ -28,7 +29,7 @@ export function view(state$: Stream<PageState>, feedsDom$: Stream<VNode>): Strea
         if (!state.isLoading) {
             return content(state, feedsDom);
         } else {
-            return <div>Loading...</div>;
+            return pulse();
         }
     });
 }

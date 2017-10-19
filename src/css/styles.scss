@@ -10,6 +10,8 @@ body {
     background-color: #f3f6fb;
     margin: 8px auto;
     width: 85%;
+    min-height: 75px;
+    height: 100%;
 }
 .header-wrapper {
     color: #c6fc93;
@@ -50,9 +52,10 @@ body {
 }
 .main-content {
     border-bottom: 2px #24242d solid;
+    width: 100%;
+    min-height: 85vh;
     margin: 5px 0;
     overflow: hidden;
-    padding: 0 5px;
     position: relative;
     word-wrap: break-word;
     a {
@@ -127,4 +130,42 @@ body {
 .comment-author {
     color: #606060;
     font-weight: bold;
+}
+.pulse {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    .pulse-bar {
+        background-color: #24242d;
+        display: inline-block;
+        width: 4px;
+        height: 20px;
+        margin: 0 2px;
+        border-radius: 4px;
+        animation: pulse 1s ease-in-out infinite;
+        &:nth-child(1) {
+            animation-delay: 0;
+        }
+        &:nth-child(2) {
+            animation-delay: 0.09s;
+        }
+        &:nth-child(3) {
+            animation-delay: .18s;
+        }
+        &:nth-child(4) {
+            animation-delay: .27s;
+        }
+    }
+}
+@keyframes pulse {
+    0% {
+        background-color: #c6fc93;
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1, 2.2);
+    }
+    40% {
+        transform: scale(1);
+    }
 }

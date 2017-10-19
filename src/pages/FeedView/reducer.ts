@@ -35,6 +35,7 @@ export function makeReducer$(sources: Sources): Stream<Reducer> {
         .map(pageData => function(state: PageState): PageState {
             return {
                 ...state,
+                isLoading: false,
                 feed: extractFeed(pageData),
                 comments: pageData.comments
             };

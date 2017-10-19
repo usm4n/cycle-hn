@@ -31,7 +31,7 @@ export default function FeedsView(sources: Sources): Sinks {
     const feedAtom = isolate(FeedAtom, 'feed')(sources);
     const commentCollection = isolate(CommentCollection, 'comments')(sources);
 
-    const pageDom$: Stream<VNode> = view(feedAtom.DOM, commentCollection.DOM);
+    const pageDom$: Stream<VNode> = view(state$, feedAtom.DOM, commentCollection.DOM);
 
     const sinks = {
         DOM: pageDom$,

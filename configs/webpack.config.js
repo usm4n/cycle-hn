@@ -70,7 +70,7 @@ module.exports = createConfig([
         new HtmlWebpackPlugin({
             template: './index.ejs',
             inject: true,
-            favicon: 'public/favicon.png',
+            favicon: 'public/favicon.ico',
             hash: true
         }),
         new webpack.ProvidePlugin({
@@ -90,7 +90,7 @@ module.exports = createConfig([
             new CleanWebpackPlugin([appPath('build')], {
                 root: process.cwd()
             }),
-            new CopyWebpackPlugin([{ from: 'public', to: '' }]),
+            new CopyWebpackPlugin([{ from: 'public', to: 'public' }]),
             new UglifyJsPlugin(),
             new SWPreCachePlugin({
                 minify: true,

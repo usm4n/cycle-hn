@@ -15,9 +15,11 @@ export interface State {
     time: number;
     time_ago: string;
     comments_count: number;
+    content?: string;
     type: string;
     url: string;
     domain: string;
+    [data: string]: any;
 }
 
 export type Reducer = (prev: State) => State;
@@ -26,15 +28,15 @@ export type FeedSources = Sources & { onion: StateSource<State> };
 
 function view(state$: Stream<State>): Stream<VNode> {
     return state$.map(feed =>
-        <li className="feed">
+        <div className="feed">
             <a className="feed-title" href={feed.url}>{feed.title}</a>
             <span className="feed-domain">({feed.domain})</span>
-            <div className=".feed-footer">
+            <div className="feed-footer">
                 <span> {feed.points} points </span> by
                 <span className="feed-author"> {feed.user}</span>
-                <span> {feed.time_ago} | {feed.comments_count} comments </span>
+                <span> {feed.time_ago} | <a href={`/atom/${feed.id}`}>{feed.comments_count} comments </a></span>
             </div>
-        </li>
+        </div>
     );
 }
 

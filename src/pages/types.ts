@@ -16,15 +16,13 @@ export interface PulseLoader {
 }
 
 interface PageBase {
-    meta: PageParams;
+    meta?: PageParams;
     pulse: PulseLoader;
 }
 
 export interface FeedViewState extends PageBase {
-    atom: FeedState & {
-        content: string;
-        comments: Array<CommentState>;
-    };
+    feed: FeedState;
+    comments: Array<CommentState>;
 }
 
 export interface FeedsListState extends PageBase {

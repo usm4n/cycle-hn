@@ -20,7 +20,7 @@ const defaultState: PageState = {
 };
 
 export function intent(sources: Sources): Stream<Reducer> {
-    const params$ = sources.params$ || xs.of({number: 1, max: 10, type: 'news'});
+    const params$ = sources.params$;
     const http$ = sources.HTTP.select('feeds').flatten() ;
 
     const initReducer$ = xs.of<Reducer>(

@@ -18,7 +18,7 @@ export function view(state$: Stream<PageState>, feedsDom$: Stream<VNode>): Strea
     .map(([state, feedsDom]) =>
         <div className="feed-content">
             <ol className="feed-list">{feedsDom}</ol>
-            {pager(state.meta)}
+            {pager(state.meta!)}
         </div>
     );
 }

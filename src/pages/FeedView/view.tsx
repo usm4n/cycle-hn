@@ -2,14 +2,19 @@ import { VNode } from '@cycle/dom';
 import xs, { Stream } from 'xstream';
 import {
     PageState,
-    PageParams
+    FeedViewState as AtomState
 } from '../types';
 
-export function view(state$: Stream<PageState>, feedsDom$: Stream<VNode>): Stream<VNode> {
-    return xs.combine(state$, feedsDom$)
-    .map(([state, feedsDom]) =>
-        <div className="feed-content">
-            <ol className="feed-list">{feedsDom}</ol>
-        </div>
-    );
+export function view(feedDom$: Stream<VNode>, commentsDom$: Stream<VNode>): Stream<VNode> {
+    return xs.combine(feedDom$, commentsDom$)
+        .map(([feed, comments]) =>
+            <div className="feed-view">
+                {feed}
+                <div className="comment-content">
+                    <ul className="comment-list">
+                        {comments}
+                    </ul>
+                </div>
+            </div>
+        );
 }

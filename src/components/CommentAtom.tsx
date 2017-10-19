@@ -27,9 +27,9 @@ function view(state$: Stream<State>): Stream<VNode> {
             <div className="comment-header">
                 <span className="comment-author"> {comment.user} </span>
                 <span> {comment.time_ago} </span>
+                <span className="comment-hide">[-]</span>
             </div>
-            <div className="comment-content">
-                {comment.content}
+            <div className="comment-content" innerHTML={comment.content}>
             </div>
         </li>
     );

@@ -21,17 +21,17 @@ function requestMapper({id, type}: {id: string, type: string}): RequestOptions {
     };
 }
 
-export default function FeedsList(sources: Sources): Sinks {
+export default function FeedsView(sources: Sources): Sinks {
     const state$ = sources.onion.state$;
 
     const request$ = sources.params$.map(requestMapper)
         .debug('Request==');
 
     const reducers$: Stream<Reducer> = intent(sources);
-    const feedsCollection = isolate(CommentCollection, 'feeds')(sources);
+    const feedAtom = isolate(FeedAtom, 'feed')(sources);
+    const commentCollection = isolate(CommentCollection, 'comments')(sources);
 
-    const feedsDom$ = feedsCollection.DOM;
-    const pageDom$: Stream<VNode> = view(state$, feedsDom$);
+    const pageDom$: Stream<VNode> = view(feedAtom.DOM, commentCollection.DOM);
 
     const sinks = {
         DOM: pageDom$,

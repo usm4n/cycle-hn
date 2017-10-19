@@ -8,6 +8,8 @@ export const FeedsCollection: Component = makeCollection<FeedState, Sources, Sin
     itemKey: state => String(state.id),
     itemScope: key => key,
     collectSinks: instances => ({
-        DOM: instances.pickCombine('DOM')
+        DOM: instances.pickCombine('DOM').map(itemNodes =>
+            itemNodes.map(item => ({...item, sel: 'li'})
+        ))
     })
 });

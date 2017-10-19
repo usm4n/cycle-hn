@@ -71,6 +71,10 @@ body {
     padding-left: 35px;
     padding-right: 15px;
 }
+.feed-view {
+    margin: 10px 0;
+    padding: 0 20px;
+}
 .feed {
     color: #808080;
     font-size: 12px;
@@ -88,5 +92,27 @@ body {
 .feed-pager {
     margin-left: 35px;
     padding: 20px 0;
+    font-weight: bold;
+}
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.comment {
+    padding: 8px 0px;
+}
+.comment-hide {
+    color: #202002;
+    cursor: pointer;
+    font-size: 13.3333px;
+}
+.comment-header {
+    font-size: 12px;
+    color: #808080;
+    margin-bottom: 8px;
+}
+.comment-author {
+    color: #606060;
     font-weight: bold;
 }

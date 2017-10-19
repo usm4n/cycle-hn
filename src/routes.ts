@@ -1,7 +1,6 @@
 import { Component } from './interfaces';
 import { PageParams } from './pages/types';
-import { createListPage } from './pages/factory';
-import FeedsList from './pages/FeedsList';
+import { createPage } from './pages/factory';
 
 export interface RouteDefinition {
     [path: string]: RouteDefinition | any;
@@ -13,15 +12,16 @@ export interface MatchedRoute {
 }
 
 export const Routes: RouteDefinition = {
-    '/': createListPage({max: 10, type: 'news', page: '1'}),
-    '/news': createListPage({max: 10, type: 'news', page: '1'}),
-    '/news/:page': (page: string) => createListPage({max: 10, type: 'news', page}),
-    '/newest': createListPage({max: 12, type: 'newest', page: '1'}),
-    '/newest/:page': (page: string) => createListPage({max: 12, type: 'newest', page}),
-    '/show': createListPage({max: 2, type: 'show', page: '1'}),
-    '/show/:page': (page: string) => createListPage({max: 2, type: 'show', page}),
-    '/ask': createListPage({max: 3, type: 'ask', page: '1'}),
-    '/ask/:page': (page: string) => createListPage({max: 3, type: 'ask', page}),
-    '/jobs': createListPage({max: 1, type: 'show', page: '1'}),
-    '/jobs/:page': (page: string) => createListPage({max: 1, type: 'jobs', page})
+    '/': createPage('list', {max: 10, type: 'news', page: '1'}),
+    '/news': createPage('list', {max: 10, type: 'news', page: '1'}),
+    '/news/:page': (page: string) => createPage('list', {max: 10, type: 'news', page}),
+    '/newest': createPage('list', {max: 12, type: 'newest', page: '1'}),
+    '/newest/:page': (page: string) => createPage('list', {max: 12, type: 'newest', page}),
+    '/show': createPage('list', {max: 2, type: 'show', page: '1'}),
+    '/show/:page': (page: string) => createPage('list', {max: 2, type: 'show', page}),
+    '/ask': createPage('list', {max: 3, type: 'ask', page: '1'}),
+    '/ask/:page': (page: string) => createPage('list', {max: 3, type: 'ask', page}),
+    '/jobs': createPage('list', {max: 1, type: 'show', page: '1'}),
+    '/jobs/:page': (page: string) => createPage('list', {max: 1, type: 'jobs', page}),
+    '/atom/:id': (id: string) => createPage('atom', {id, type: 'item'})
 };

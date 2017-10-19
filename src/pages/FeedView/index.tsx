@@ -1,3 +1,5 @@
+import { view } from './view';
+import { intent } from './intent';
 import { VNode } from '@cycle/dom';
 import { API_URL } from '../../app';
 import isolate from '@cycle/isolate';

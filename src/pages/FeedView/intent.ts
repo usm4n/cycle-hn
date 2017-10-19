@@ -12,16 +12,15 @@ const defaultState: PageState = {
         show: true
     },
     meta: {
-        max: 0,
-        page: '0',
-        type: 'news'
+        id: '',
+        type: 'item'
     },
     feeds: [] as Array<FeedState>
 };
 
 export function intent(sources: Sources): Stream<Reducer> {
-    const params$ = sources.params$ || xs.of({number: 1, max: 10, type: 'news'});
-    const http$ = sources.HTTP.select('feeds').flatten() ;
+    const params$ = sources.params$;
+    const http$ = sources.HTTP.select('atom').flatten() ;
 
     const initReducer$ = xs.of<Reducer>(
         prevState => (prevState === undefined ? defaultState : prevState)

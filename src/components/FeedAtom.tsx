@@ -39,7 +39,11 @@ function domain(feed: State): any {
 }
 
 function author(feed: State): any {
-    return feed.type !== 'job' && <span className="feed-author"> by {feed.user}</span>;
+    return feed.type !== 'job'
+        && <span>
+        by
+            <span className="feed-author"> {feed.user}</span>
+        </span>;
 }
 function points(feed: State): any {
     return feed.type !== 'job' && <span> {feed.points} points </span>;

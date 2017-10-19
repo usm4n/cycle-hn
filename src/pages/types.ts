@@ -17,7 +17,8 @@ export interface PulseLoader {
 
 interface PageBase {
     meta?: PageParams;
-    pulse: PulseLoader;
+    isLoading: boolean;
+    // pulse: PulseLoader;
 }
 
 export interface FeedViewState extends PageBase {

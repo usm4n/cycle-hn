@@ -9,9 +9,7 @@ import { State as FeedState } from '../../components/FeedAtom';
 import { State as CommentState } from '../../components/CommentAtom';
 
 const defaultState: PageState = {
-    pulse: {
-        show: true
-    },
+    isLoading: true,
     feed: {} as FeedState,
     comments: {} as Array<CommentState>
 };
@@ -31,9 +29,7 @@ function extractFeed(data: any): FeedState {
 export function makeReducer$(sources: Sources): Stream<Reducer> {
     const http$ = sources.HTTP.select('atom').flatten() ;
 
-    const initReducer$ = xs.of<Reducer>(
-        prevState => (prevState === undefined ? defaultState : prevState)
-    );
+    const initReducer$ = xs.of<Reducer>(() => defaultState);
 
     const pageReducer$ = http$.map((res: any) => res.body)
         .map(pageData => function(state: PageState): PageState {

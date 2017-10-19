@@ -8,9 +8,10 @@ import {
 import { State as FeedState } from '../../components/FeedAtom';
 
 const defaultState: PageState = {
-    pulse: {
-        show: true
-    },
+    // pulse: {
+    //     show: true
+    // },
+    isLoading: true,
     meta: {
         max: 0,
         page: '0',
@@ -23,15 +24,15 @@ export function makeReducer$(sources: Sources): Stream<Reducer> {
     const params$ = sources.params$;
     const http$ = sources.HTTP.select('feeds').flatten() ;
 
-    const initReducer$ = xs.of<Reducer>(
-        prevState => (prevState === undefined ? defaultState : prevState)
-    );
+    // reset any residual state
+    const initReducer$ = xs.of<Reducer>(() => defaultState);
 
     const pageReducer$ = xs.combine(http$, params$)
         .map(([res, params]): any => ({feeds: res.body, params}))
         .map(pageData => function(state: PageState): PageState {
             return {
                 ...state,
+                isLoading: false,
                 meta: pageData.params,
                 feeds: pageData.feeds
             };

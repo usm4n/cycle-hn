@@ -1,5 +1,11 @@
 {
   "name": "cycle-hn",
+  "author": "Usman Riaz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/usm4n/cycle-hn.git"
+  },
   "version": "0.1.0",
   "private": true,
   "devDependencies": {

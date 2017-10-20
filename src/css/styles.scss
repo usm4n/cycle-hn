@@ -12,6 +12,10 @@ body {
     width: 85%;
     min-height: 75px;
     height: 100%;
+    @media screen and (min-width: 320px) and (max-width: 480px) {
+        width: 100%;
+        margin: 0;
+    }
 }
 .header-wrapper {
     color: #c6fc93;

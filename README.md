@@ -1,25 +1,33 @@
-## Your amazing project
 
-Thanks for using the `one-fits-all` flavor.
 
-### Using your app
+# [cycle-hn](https://github.com/usm4n/cycle-hn)
 
-Run in development mode: `npm start`
-Build a production build: `npm run build`
-Run the unit tests: `npm test`
+A [CycleJS](https://github.com/cyclejs/cyclejs) &
+[cycle-onionify](https://github.com/staltz/cycle-onionify)-powered implementation of
+[Hacker News](https://news.ycombinator.com) using its
+[HNPWA API](https://github.com/tastejs/hacker-news-pwas/blob/master/docs/api.md).
 
-### Extending the configuration
+## Screenshot
 
-If you want to add custom config to babel or webpack, you can now do it! Just add a `.babelrc` or `webpack.config.js` respectively to your app root directory. The `webpack.config.js` just has to export a partial webpack config. It will be merged with the default config.
+![cycle-hn screenshot 1](https://github.com/usm4n/cycle-hn/screens/cycle-hn1.png)
 
-Example: Adding the progress bar plugin:
-```javascript
-// /path/to/your/app/webpack.config.js
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/screens/cycle-hn2.png)
 
-module.exports = {
-    plugin: [
-        new ProgressBarPlugin()
-    ]
-}
+Live version: N/A
+
+[Feature requests are welcome!](https://github.com/usm4n/cycle-hn/issues/new)
+
+## Building
+
+Install dependencies:
+
 ```
+npm install
+```
+
+### npm scripts
+
+* `npm start` - start development server
+* `npm run build` - build into the `build/` directory
+
+## MIT Licensed

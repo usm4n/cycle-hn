@@ -37,4 +37,5 @@ npm install
 [Jan van Brügge](https://github.com/jvanbruegge) for awesome [one-fits-all](https://github.com/cyclejs-community/one-fits-all) flavor for [cycle-scripts](https://github.com/cyclejs-community/create-cycle-app)
 
 
-## MIT Licensed
+### License
+Cycle-hn is a free software realeased under the terms of MIT license.

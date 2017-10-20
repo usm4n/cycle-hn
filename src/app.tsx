@@ -40,8 +40,10 @@ function view(history$: Stream<Location>, vdom$: Stream<VNode>): Stream<VNode> {
     return xs.combine(history$, vdom$).map(([{pathname}, vdom]: [{pathname: string}, VNode]) =>
         <div className="main-wrapper">
             <div className="header-wrapper">
-                <img className="logo" src="/public/cycle.png" alt="logo"/>
-                <a className="home">Cycle HN</a>
+                <a href="/">
+                    <img className="logo" src="/public/cycle.png" alt="logo"/>
+                </a>
+                <a className="home" href="/news/1">Cycle HN</a>
                 {navigation(pathname)}
             </div>
             <div className="main-content">

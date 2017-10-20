@@ -23,5 +23,6 @@ export const Routes: RouteDefinition = {
     '/ask/:page': (page: string) => createPage('list', {max: 3, type: 'ask', page}),
     '/jobs': createPage('list', {max: 1, type: 'show', page: '1'}),
     '/jobs/:page': (page: string) => createPage('list', {max: 1, type: 'jobs', page}),
-    '/atom/:id': (id: string) => createPage('atom', {id, type: 'item'})
+    '/atom/:id': (id: string) => createPage('atom', {id, type: 'item'}),
+    '*': createPage('list', {max: 10, type: 'news', page: '1'})
 };

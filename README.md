@@ -16,7 +16,11 @@ A [CycleJS](https://github.com/cyclejs/cyclejs) &
 ### Lighthouse stats
 ![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/blob/master/screens/lighthouse.png)
 
-Live version: [cycle-hn](https://cyclejs-hn.firebaseapp.com)
+Live version:
+
+[@Now](https://build-mnrpnfoxlt.now.sh) - preferred
+
+[@Firebaseapp](https://cyclejs-hn.firebaseapp.com)
 
 [Feature requests are welcome!](https://github.com/usm4n/cycle-hn/issues/new)
 

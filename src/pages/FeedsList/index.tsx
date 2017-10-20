@@ -24,8 +24,7 @@ function requestMapper({page, type}: {page: string, type: string}): RequestOptio
 export default function FeedsList(sources: Sources): Sinks {
     const state$ = sources.onion.state$;
 
-    const request$ = sources.params$.map(requestMapper)
-        .debug('Request==');
+    const request$ = sources.params$.map(requestMapper);
 
     const reducers$: Stream<Reducer> = makeReducer$(sources);
     const feedsCollection = isolate(FeedsCollection, 'feeds')(sources);

@@ -24,8 +24,7 @@ function requestMapper({id, type}: {id: string, type: string}): RequestOptions {
 export default function FeedsView(sources: Sources): Sinks {
     const state$ = sources.onion.state$;
 
-    const request$ = sources.params$.map(requestMapper)
-        .debug('Request==');
+    const request$ = sources.params$.map(requestMapper);
 
     const reducers$: Stream<Reducer> = makeReducer$(sources);
     const feedAtom = isolate(FeedAtom, 'feed')(sources);

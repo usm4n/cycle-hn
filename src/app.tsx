@@ -65,29 +65,18 @@ function initState(): Stream<Reducer> {
 export function App(sources: AppSources): AppSinks {
     const history$: Stream<Location> = sources.History;
 
-    sources.onion.state$.addListener({
-        next: value => console.log(value)
-    });
-
     const initState$ = initState();
 
     const pageSinks$ = history$.map((location: Location): MatchedRoute => {
         const {pathname} = location;
-        console.log(location);
 
         return switchPath(pathname, Routes);
-    }).map((route: MatchedRoute) => {
-        console.log(route);
-        return isolate(route.value, 'page')(sources);
-    });
+    }).map((route: MatchedRoute) => isolate(route.value, 'page')(sources));
 
     const pageSinks = extractSinks(pageSinks$, ['DOM', 'HTTP', 'onion']);
 
     const reducers$ = xs.merge<Reducer>(pageSinks.onion, initState$);
 
-    reducers$.addListener({
-        next: (value: Reducer) => console.log(value)
-    });
     const vdom$ = view(history$, pageSinks.DOM as Stream<VNode>);
 
     return {

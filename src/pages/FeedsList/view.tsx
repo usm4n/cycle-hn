@@ -18,7 +18,8 @@ function content(state: PageState, feedsDom: VNode): VNode {
     return (
         <div className="feed-content">
              <ol className="feed-list">{feedsDom}</ol>
-               {pager(state.meta!)}
+             {/* this needs to be looked into */}
+               {state.meta && pager(state.meta)}
         </div>
     );
 }

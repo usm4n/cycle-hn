@@ -8,9 +8,6 @@ import {
 import { State as FeedState } from '../../components/FeedAtom';
 
 const defaultState: PageState = {
-    // pulse: {
-    //     show: true
-    // },
     isLoading: true,
     meta: {
         max: 0,

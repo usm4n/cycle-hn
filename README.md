@@ -13,7 +13,10 @@ A [CycleJS](https://github.com/cyclejs/cyclejs) &
 
 ![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/screens/cycle-hn2.png)
 
-Live version: N/A
+### Lighthouse stats
+![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/screens/lighthouse.png)
+
+Live version: [cycle-hn](https://cyclejs-hn.firebaseapp.com)
 
 [Feature requests are welcome!](https://github.com/usm4n/cycle-hn/issues/new)
 
@@ -29,5 +32,9 @@ npm install
 
 * `npm start` - start development server
 * `npm run build` - build into the `build/` directory
+
+## Acknowledgement
+[Jan van Brügge](https://github.com/jvanbruegge) for awesome [one-fits-all](https://github.com/cyclejs-community/one-fits-all) flavor for [cycle-scripts](https://github.com/cyclejs-community/create-cycle-app)
+
 
 ## MIT Licensed

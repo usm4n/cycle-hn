@@ -9,12 +9,12 @@ A [CycleJS](https://github.com/cyclejs/cyclejs) &
 
 ## Screenshot
 
-![cycle-hn screenshot 1](https://github.com/usm4n/cycle-hn/screens/cycle-hn1.png)
+![cycle-hn screenshot 1](https://github.com/usm4n/cycle-hn/blob/master/screens/cycle-hn1.png)
 
-![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/screens/cycle-hn2.png)
+![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/blob/master/screens/cycle-hn2.png)
 
 ### Lighthouse stats
-![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/screens/lighthouse.png)
+![cycle-hn screenshot 2](https://github.com/usm4n/cycle-hn/blob/master/screens/lighthouse.png)
 
 Live version: [cycle-hn](https://cyclejs-hn.firebaseapp.com)
 

@@ -10,6 +10,7 @@ export function createPage(page: string, params: PageParams): Component {
 
     return (sources: PageSources): PageSinks => {
         const pageSources: PageSources = {params$, ...sources};
+
         if (page === 'atom') {
             return FeedView(pageSources);
         } else {

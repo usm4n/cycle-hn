@@ -45,9 +45,11 @@ function author(feed: State): any {
             <span className="feed-author"> {feed.user}</span>
         </span>;
 }
+
 function points(feed: State): any {
     return feed.type !== 'job' && <span> {feed.points} points </span>;
 }
+
 function commentsLink(feed: State): any {
     return feed.type !== 'job' && <a href={`/atom/${feed.id}`}> | {feed.comments_count} comments </a>;
 }

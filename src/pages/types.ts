@@ -1,4 +1,3 @@
-import { PageParams, PulseLoader } from './types';
 import { Stream } from 'xstream';
 import { StateSource } from 'cycle-onionify';
 import { Sources, Sinks } from '../interfaces';

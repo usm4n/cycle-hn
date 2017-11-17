@@ -9,7 +9,9 @@ import { pulse } from '../partials/_pulse';
 function pager(pageData: PageParams): VNode {
     return (
         <div className="feed-pager">
-            {+pageData.page! < pageData.max && <a href={`/${pageData.type}/${+pageData.page! + 1}`}>More</a>}
+            {+pageData.page! > 1 && <a href={`/${pageData.type}/${+pageData.page! - 1}`}>Prev</a>}
+            {(+pageData.page! > 1 && +pageData.page! < pageData.max) && ' | '}
+            {+pageData.page! < pageData.max && <a href={`/${pageData.type}/${+pageData.page! + 1}`}>Next</a>}
         </div>
     );
 }

@@ -16,12 +16,16 @@ function pager(pageData: PageParams): VNode {
     );
 }
 
+function startOrder(pageData: PageParams): number {
+    return ((+pageData.page! - 1) * 30) + 1;
+}
+
 function content(state: PageState, feedsDom: VNode): VNode {
     return (
         <div className="feed-content">
-             <ol className="feed-list">{feedsDom}</ol>
-             {/* this needs to be looked into */}
-               {state.meta && pager(state.meta)}
+            <ol className="feed-list" start={state.meta && startOrder(state.meta)}>{feedsDom}</ol>
+            {/* this needs to be looked into */}
+            {state.meta && pager(state.meta)}
         </div>
     );
 }

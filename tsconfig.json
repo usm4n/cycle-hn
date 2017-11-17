@@ -9,6 +9,7 @@
     "jsxFactory": "Snabbdom.createElement",
     "noImplicitReturns": true,
     "strict": true,
+    "strictFunctionTypes": false,
     "allowJs": true,
     "lib": ["es6", "es5", "dom"]
   },

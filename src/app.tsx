@@ -27,10 +27,10 @@ export type AppSources = Sources & { onion: StateSource<AppState>};
 function navigation(pathname: string): VNode {
     return (
         <span>
-            <a href="/news/1" className={pathname.startsWith('/news') ? 'active' : ''}> top </a>|
-            <a href="/newest/1" className={pathname.startsWith('/newest') ? 'active' : ''}> new </a>|
-            <a href="/show/1" className={pathname.startsWith('/show') ? 'active' : ''}> show </a>|
-            <a href="/ask/1" className={pathname.startsWith('/ask') ? 'active' : ''}> ask </a>|
+            <a href="/news/1" className={pathname.startsWith('/news') ? 'active' : ''}> top </a>
+            <a href="/newest/1" className={pathname.startsWith('/newest') ? 'active' : ''}> new </a>
+            <a href="/show/1" className={pathname.startsWith('/show') ? 'active' : ''}> show </a>
+            <a href="/ask/1" className={pathname.startsWith('/ask') ? 'active' : ''}> ask </a>
             <a href="/jobs/1" className={pathname.startsWith('/jobs') ? 'active' : ''}> jobs </a>
         </span>
     );
@@ -40,11 +40,13 @@ function view(history$: Stream<Location>, vdom$: Stream<VNode>): Stream<VNode> {
     return xs.combine(history$, vdom$).map(([{pathname}, vdom]: [{pathname: string}, VNode]) =>
         <div className="main-wrapper">
             <div className="header-wrapper">
-                <a href="/">
-                    <img className="logo" src="/public/cycle.png" alt="logo"/>
-                </a>
-                <a className="home" href="/news/1">Cycle HN</a>
-                {navigation(pathname)}
+                <div className="header-inner">
+                    <a href="/">
+                        <img className="logo" src="/public/cycle.png" alt="logo" />
+                    </a>
+                    <a className="home" href="/news/1">Cycle HN</a>
+                    {navigation(pathname)}
+                </div>
             </div>
             <div className="main-content">
                 {vdom}

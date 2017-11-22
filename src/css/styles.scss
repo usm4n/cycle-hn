@@ -8,8 +8,7 @@ body {
 }
 .main-wrapper {
     background-color: #f3f6fb;
-    margin: 8px auto;
-    width: 85%;
+    width: 100%;
     min-height: 75px;
     height: 100%;
     @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -20,45 +19,69 @@ body {
 .header-wrapper {
     color: #c6fc93;
     background-color: #24242d;
-    font-size: 13.3333px;
+    font-size: 16px;
+    height: 40px;
     line-height: 16px;
     overflow: hidden;
     padding: 4px;
     position: relative;
-    vertical-align: middle;
-    .logo {
-        border: 1px #c6fc93 solid;
-        margin-right: 5px;
+    .header-inner {
+        width: 75%;
+        margin: 0 auto;
+        padding: 10px;
         vertical-align: middle;
-        width: 18px;
-    }
-    a {
-        color: #c6fc93;
-        text-decoration: none;
-        &.active {
-            color: #f3f6fb;
+        .logo {
+            border: 1px #c6fc93 solid;
+            margin-right: 15px;
+            vertical-align: middle;
+            width: 24px;
         }
-    }
-    .home {
-        font-weight: bold;
-        margin-right: .5em;
+        a {
+            margin: 0 5px;
+            color: #c6fc93;
+            text-decoration: none;
+            &.active {
+                color: #f3f6fb;
+            }
+        }
+        .home {
+            font-weight: bold;
+            margin-right: .5em;
+            @media screen and (max-width: 600px) {
+                display: none;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            width: 100%;
+        }
     }
 }
 .footer {
     color: #808080;
-    height: 25px;
+    background-color: #fff;
+    margin: 0 auto;
+    width: 75%;
+    height: 30px;
+    overflow: hidden;
+    padding: 15px 0;
     text-align: center;
     .github {
         color: #606060;
         font-weight: bold;
         text-decoration: none;
     }
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+    p { margin: 0; }
 }
 .main-content {
+    background-color: #fff;
     border-bottom: 2px #24242d solid;
-    width: 100%;
+    width: 75%;
+    line-height: 1.5em;
     min-height: 85vh;
-    margin: 5px 0;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     word-wrap: break-word;
@@ -71,6 +94,10 @@ body {
         &:visited {
             color: #606060;
         }
+    }
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        margin: 0;
     }
 }
 .feed-list {
@@ -97,7 +124,7 @@ body {
     font-weight: bold;
 }
 .feed-pager {
-    margin-left: 35px;
+    text-align: center;
     padding: 20px 0;
     font-weight: bold;
 }

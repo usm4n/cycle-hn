@@ -127,6 +127,14 @@ body {
     text-align: center;
     padding: 20px 0;
     font-weight: bold;
+    .disabled {
+        color: #808080;
+    }
+    .pager-position {
+        color: #808080;
+        margin: 0 10px;
+        font-weight: normal;
+    }
 }
 .comment-list {
     list-style: none;

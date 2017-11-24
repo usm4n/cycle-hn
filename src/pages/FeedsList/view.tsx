@@ -6,12 +6,28 @@ import { VNode } from '@cycle/dom';
 import xs, { Stream } from 'xstream';
 import { pulse } from '../partials/_pulse';
 
+function prevLink(pageData: PageParams): VNode {
+   return +pageData.page! > 1
+       ? <a href={`/${pageData.type}/${+pageData.page! - 1}`}>&lt; prev </a>
+       : <span className="disabled">&lt; prev </span>;
+}
+
+function nextLink(pageData: PageParams): VNode {
+   return +pageData.page! < pageData.max
+       ? <a href={`/${pageData.type}/${+pageData.page! + 1}`}> next &gt;</a>
+       : <span className="disabled"> next &gt;</span>;
+}
+
+function currentPosition(pageData: PageParams): VNode {
+    return <span className="pager-position">{`${pageData.page} / ${pageData.max}`}</span>;
+}
+
 function pager(pageData: PageParams): VNode {
     return (
         <div className="feed-pager">
-            {+pageData.page! > 1 && <a href={`/${pageData.type}/${+pageData.page! - 1}`}>Prev</a>}
-            {(+pageData.page! > 1 && +pageData.page! < pageData.max) && ' | '}
-            {+pageData.page! < pageData.max && <a href={`/${pageData.type}/${+pageData.page! + 1}`}>Next</a>}
+            {prevLink(pageData)}
+            {currentPosition(pageData)}
+            {nextLink(pageData)}
         </div>
     );
 }

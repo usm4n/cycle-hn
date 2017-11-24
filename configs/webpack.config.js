@@ -19,6 +19,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const SWPreCachePlugin = require('sw-precache-webpack-plugin');
 
 const path = require('path');
@@ -92,6 +93,7 @@ module.exports = createConfig([
             }),
             new CopyWebpackPlugin([{ from: 'public', to: 'public' }]),
             new UglifyJsPlugin(),
+            new OptimizeCssAssetsPlugin(),
             new SWPreCachePlugin({
                 minify: true,
                 cacheId: 'cycle-hn',

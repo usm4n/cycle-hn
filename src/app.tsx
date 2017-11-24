@@ -48,7 +48,7 @@ function view(history$: Stream<Location>, vdom$: Stream<VNode>): Stream<VNode> {
                     {navigation(pathname)}
                 </div>
             </div>
-            <div className="main-content">
+            <div className="main-content" id="content">
                 {vdom}
             </div>
             <div className="footer">

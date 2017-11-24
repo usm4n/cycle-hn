@@ -22,8 +22,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/public/images/ms-icon-144x144.png">
     <meta name="theme-color" content="#24242d">
+    <style>
+      #skip a {position:absolute;  left:-10000px;  top:auto;  width:1px;  height:1px;  overflow:hidden;}
+      #skip a:focus {position:static;  width:auto;  height:auto;}
+    </style>
 </head>
 <body>
+    <div id="skip"><a href="#content">skip to content</a></div>
     <div id="app"/>
     <noscript>
       <h4 style="font-family: 'DejaVu Sans Mono', 'Helvetica Neue', Helvetica;">
